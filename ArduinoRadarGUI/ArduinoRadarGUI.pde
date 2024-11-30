@@ -55,7 +55,7 @@ void draw() {
   rect(0, 0, width, height); 
   // Background blur I think?
   fill(0,4); 
-  rect(0, 0, width, height-height*0.065); 
+  rect(0, 0, width, height); 
 
   // Calling the draw functions
   drawRadar(); 
