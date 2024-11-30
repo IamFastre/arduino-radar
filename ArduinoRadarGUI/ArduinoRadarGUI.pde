@@ -51,10 +51,7 @@ void draw() {
 
   // Setting background color
   noStroke();
-  fill(primary);
-  rect(0, 0, width, height); 
-  // Background blur I think?
-  fill(0,4); 
+  fill(0, 10);
   rect(0, 0, width, height); 
 
   // Calling the draw functions
@@ -206,7 +203,7 @@ void drawInfoBox() {
   pushMatrix();
   translate(0, 0);
 
-  noFill();
+  fill(primary);
   stroke(secondary);
   strokeWeight(3);
 
