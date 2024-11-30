@@ -8,9 +8,6 @@ import java.io.IOException; // for error handling
 
 String COM_PORT = "COM1";
 
-int SCREEN_WIDTH = 1920;
-int SCREEN_HEIGHT = 1080;
-
 boolean SHOW_CREDITS = true;
 boolean SHOW_ANGLES = true;
 boolean SHOW_DISTANCES = true;
@@ -40,7 +37,7 @@ float radarRadius = 0;
 void setup() {
   fullScreen();
 
-  size (SCREEN_WIDTH, SCREEN_HEIGHT);
+  size (1920, 1080);
 
   smooth();
   myPort = new Serial(this, COM_PORT, 9600); // Start the serial communication
