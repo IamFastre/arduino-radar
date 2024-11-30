@@ -14,17 +14,21 @@
 #include <Servo.h>.
 
 struct sen {
+  bool enabled;
   int trig;
   int echo;
 };
 
-// Defines Trig and Echo pins of the Ultrasonic Sensors
+// Defines Trig and Echo pins of the Ultrasonic Sensor 1
 const sen sensor1 = {
+  .enabled = true,
   .trig = 11,
   .echo = 12,
 };
 
+// Defines Trig and Echo pins of the Ultrasonic Sensor 2
 const sen sensor2 = {
+  .enabled = false,
   .trig = 13,
   .echo = 14,
 };
@@ -41,11 +45,15 @@ long duration;
 int distance;
 
 void setup() {
-  pinMode(sensor1.trig, OUTPUT);  // Sets the trigPin as an Output
-  pinMode(sensor1.echo, INPUT);   // Sets the echoPin as an Input
+  if (sensor2.enabled) {
+    pinMode(sensor1.trig, OUTPUT);  // Sets the trigPin as an Output
+    pinMode(sensor1.echo, INPUT);   // Sets the echoPin as an Input
+  }
 
-  pinMode(sensor2.trig, OUTPUT);  // Sets the trigPin as an Output
-  pinMode(sensor2.echo, INPUT);   // Sets the echoPin as an Input
+  if (sensor2.enabled) {
+    pinMode(sensor2.trig, OUTPUT);  // Sets the trigPin as an Output
+    pinMode(sensor2.echo, INPUT);   // Sets the echoPin as an Input
+  }
 
   Serial.begin(9600);
   myServo.attach(servoPin);  // Defines on which pin is the servo motor attached
