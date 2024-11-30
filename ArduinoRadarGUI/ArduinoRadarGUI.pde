@@ -113,8 +113,6 @@ void drawRadar() {
 }
 
 void angleText(int theta) {
-  float radius = radarRadius;
-
   translate(width / 1.4, height / 2);
   rotate(-radians(theta));
 
