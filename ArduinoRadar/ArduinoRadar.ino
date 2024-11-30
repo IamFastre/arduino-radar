@@ -67,7 +67,6 @@ void loop() {
 
     // Calls a function for calculating the distance measured by the Ultrasonic sensor for each degree
     distance = calculateDistance(sensor1.trig, sensor1.echo);
-
     sendPackage(i, distance);
   }
 
@@ -78,7 +77,6 @@ void loop() {
 
     // Calls a function for calculating the distance measured by the Ultrasonic sensor for each degree
     distance = calculateDistance(sensor1.trig, sensor1.echo);
-
     sendPackage(i, distance);
   }
 }
@@ -88,7 +86,7 @@ void sendPackage(int angle, int distance) {
   Serial.print(",");       // Sends addition character right next to the previous value needed later in the Processing IDE for indexing
   Serial.print(distance);  // Sends the distance value into the Serial Port
   Serial.print(".");       // Sends addition character right next to the previous value needed later in the Processing IDE for indexing
-  Serial.print("\n");      // Sends a new line for readability
+  // Serial.print("\n");      // Sends a new line for readability
 }
 
 // Function to read the sensor data and calculate the distance
