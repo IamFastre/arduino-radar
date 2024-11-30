@@ -36,8 +36,7 @@ float radarRadius = 0;
 
 void setup() {
   fullScreen();
-
-  size (1920, 1080);
+  size(1920, 1080);
 
   smooth();
   myPort = new Serial(this, COM_PORT, 9600); // Start the serial communication
