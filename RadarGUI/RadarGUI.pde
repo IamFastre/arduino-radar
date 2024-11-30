@@ -41,7 +41,7 @@ void setup() {
   smooth();
   myPort = new Serial(this, COM_PORT, 9600); // Start the serial communication
   myPort.bufferUntil('.'); // Reads the data from the serial port up to the character '.'. So actually it reads this: angle,distance.
-  orcFont = loadFont("OCRAExtended-30.vlw");
+  orcFont = loadFont("./Assets/OCRAExtended-30.vlw");
 }
 
 void draw() {
