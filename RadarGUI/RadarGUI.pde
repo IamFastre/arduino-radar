@@ -39,7 +39,7 @@ void settings() {
     fullScreen();
 
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
-  smooth(50);
+  smooth();
 }
 
 void setup() {
@@ -47,7 +47,7 @@ void setup() {
   myPort = new Serial(this, COM_PORT, BAUD_RATE); // Start the serial communication
   myPort.bufferUntil('.'); // Reads the data up to the character '.' to be parsed, in the format of: `angle,distance`.
 
-  // For the initial 
+  // For the initial glow down effect
   noStroke();
   fill(accent);
   rect(0, 0, width, height); 

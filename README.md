@@ -27,9 +27,14 @@ The radar scans the environment, measures distances, and visualizes the data in 
   <img 
     src="./Media/Port.png"
     alt="COM Port"
-    width="100px"
+    height="100px"
   />
-  <li>Modify the configs to ensure the correct COM port.</li>
+  <li>Modify the configs in <code>RadarGUI.pde</code> to match your use case.</li>
+  <img 
+    src="./Media/Configs.png"
+    alt="GUI Configs"
+    height="200px"
+  />
   <li>Run the <strong>Processing</strong> sketch to visualize the radar data.</li>
 </ol> 
 
