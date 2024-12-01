@@ -13,7 +13,7 @@ The radar scans the environment, measures distances, and visualizes the data in 
     width="100%"
   />
   <center style="font-size: 10px;">
-    Through <a href="https://wokwi.com/">Wokwi</a>
+    Through <a href="https://www.tinkercad.com/dashboard">Tinkercad</a>
   </center>
 </div>
 
