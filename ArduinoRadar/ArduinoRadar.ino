@@ -45,7 +45,7 @@ long duration;
 int distance;
 
 void setup() {
-  if (sensor2.enabled) {
+  if (sensor1.enabled) {
     pinMode(sensor1.trig, OUTPUT);  // Sets the trigPin as an Output
     pinMode(sensor1.echo, INPUT);   // Sets the echoPin as an Input
   }
