@@ -1,12 +1,14 @@
 // Includes the Servo library
 #include <Servo.h>.
 
+/* ========================================================================== */
+
 // Struct to carry info about a sensor
 struct sen {
   const bool enabled; // Used to define pin modes and for sent packages
   const int trig;     // Sensor trigger pin
   const int echo;     // Sensor echo pin
-  int distance;       // The distance the sensor detects
+  int distance;  // The distance the sensor detects
 
   // Update the value of `distance`
   // Only runs if sensor is enabled
@@ -24,17 +26,17 @@ struct sen {
   }
 };
 
-/* ========================================================================== */
+/* ============================= Configurations ============================= */
 
 // Serial setup
-const int serialPort = 9600;
-const bool sendNewLine = false;
+const int SERIAL_PORT = 9600;
+const bool SEND_NEWLINE = false;
 
 // Servo setup
 Servo myServo;
-const int servoPin = 2; //* CONFIGURE FOR YOURSELF IF YOU WANT
+const int SERVO_PIN = 2; //* CONFIGURE FOR YOURSELF IF YOU WANT
 
-// Defines Trig and Echo pins of the Ultrasonic Sensor 1
+// Defines Trig and Echo pins of the ultrasonic sensor 1
 //* CONFIGURE FOR YOURSELF IF YOU WANT
 sen sensor1 = {
   .enabled = true,
@@ -42,7 +44,7 @@ sen sensor1 = {
   .echo = 4,
 };
 
-// Defines Trig and Echo pins of the Ultrasonic Sensor 2
+// Defines Trig and Echo pins of the ultrasonic sensor 2
 //* CONFIGURE FOR YOURSELF IF YOU WANT
 sen sensor2 = {
   .enabled = false,
@@ -52,14 +54,14 @@ sen sensor2 = {
 
 // Servo angle range
 //* CONFIGURE FOR YOURSELF IF YOU WANT
-const int min_angle = 0;
-const int max_angle = 180;
+const int MIN_ANGLE = 0;
+const int MAX_ANGLE = 180;
 
 /* ========================================================================== */
 
 void setup() {
-  Serial.begin(serialPort); // Start serial connection as port `serialPort`
-  myServo.attach(servoPin); // Attaches the `servoPin` to the `myServo` object
+  Serial.begin(SERIAL_PORT); // Start serial connection as port `SERIAL_PORT`
+  myServo.attach(SERVO_PIN); // Attaches the `SERVO_PIN` to the `myServo` object
 
   if (sensor1.enabled) {
     // Set input and output of sensor 1
@@ -75,8 +77,8 @@ void setup() {
 }
 
 void loop() {
-  // Rotates the servo motor from `min_angle` to `max_angle`
-  for (int i = min_angle; i <= max_angle; i++) {
+  // Rotates the servo motor from `MIN_ANGLE` to `MAX_ANGLE`
+  for (int i = MIN_ANGLE; i <= MAX_ANGLE; i++) {
     myServo.write(i);
     delay(30);
 
@@ -86,8 +88,8 @@ void loop() {
     sendPackage(i, sensor1.distance, sensor2.distance);
   }
 
-  // Rotates the servo motor back from `max_angle` to `min_angle`
-  for (int i = max_angle; i > min_angle; i--) {
+  // Rotates the servo motor back from `MAX_ANGLE` to `MIN_ANGLE`
+  for (int i = MAX_ANGLE; i > MIN_ANGLE; i--) {
     myServo.write(i);
     delay(30);
 
@@ -115,6 +117,6 @@ void sendPackage(int angle, int distance1, int distance2) {
 
   Serial.print(".");          // Sends addition character right next to the previous value needed later in the Processing IDE for indexing
 
-  if (sendNewLine)
-    Serial.print("\n");         // Sends a new line for readability
+  if (SEND_NEWLINE)
+    Serial.print("\n");       // Sends a new line for readability
 }
