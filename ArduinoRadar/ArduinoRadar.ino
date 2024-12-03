@@ -44,7 +44,7 @@ struct sen {
 
       // Wait for a high pulse in `echo`
       unsigned long pulseDuration = pulseIn(echo, HIGH);
-      debug(VERBOSE, "Pulse duration from echo:", String(echo), " is ", String(pulseDuration));
+      debug(VERBOSE, "Pulse duration from echo:", String(echo), " took ", String(pulseDuration), "ms");
 
       // Measure the pulse width of the echo pin and calculate the distance value
       distance = pulseDuration / 58.00; // Formula: (340m/s * 1μs) / 2
@@ -59,16 +59,13 @@ const int SERIAL_PORT = 9600;
 const bool SEND_NEWLINE = false;
 
 // Servo setup
-Servo myServo;
-const int SERVO_PIN = 2; //* CONFIGURE FOR YOURSELF IF YOU WANT
+const int SERVO_PIN = 2;
 
 // Servo angle range
-//* CONFIGURE FOR YOURSELF IF YOU WANT
 const int MIN_ANGLE = 0;
 const int MAX_ANGLE = 180;
 
 // Defines Trig and Echo pins of the ultrasonic sensor 1
-//* CONFIGURE FOR YOURSELF IF YOU WANT
 sen sensor1 = {
   .enabled = true,
   .trig = 3,
@@ -76,16 +73,16 @@ sen sensor1 = {
 };
 
 // Defines Trig and Echo pins of the ultrasonic sensor 2
-//* CONFIGURE FOR YOURSELF IF YOU WANT
 sen sensor2 = {
   .enabled = false,
   .trig = 5,
   .echo = 6,
 };
 
-const int LOOP_DELAY = DEBUG_LEVEL ? 240 : 30;
-
 /* ========================================================================== */
+
+const int LOOP_DELAY = DEBUG_LEVEL ? 240 : 30;
+Servo myServo;
 
 void setup() {
   Serial.begin(SERIAL_PORT); // Start serial connection as port `SERIAL_PORT`
