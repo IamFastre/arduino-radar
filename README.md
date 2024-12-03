@@ -1,7 +1,7 @@
 # Arduino Radar (Actually Sonar)
 
 A simple radar system using the *Arduino Uno*, a *servo motor*, and one (or two) *ultrasonic sensor* (*HC-SR04*).
-The radar scans the environment, measures distances, and visualizes the data in real-time using **Processing** .
+The radar scans the environment, measures distances, and visualizes the data in real-time using **Processing**.
 
 
 ## Circuit Diagram
