@@ -7,11 +7,15 @@ enum DebugLevel {
   VERBOSE,
 };
 
-const bool DEBUG_LEVEL = NONE;
+const int DEBUG_LEVEL = NONE;
 
-void debug(int lvl, char s[]...) {
-  if (lvl <= DEBUG_LEVEL)
-    Serial.println(s);
+template <typename... T>
+void debug(int lvl, T&&... s) {
+  if (lvl <= DEBUG_LEVEL) {
+    // Concatenate and print arguments to the serial monitor
+    (Serial.print(s), ...);
+    Serial.println();
+  }
 }
 
 /* ========================================================================== */
