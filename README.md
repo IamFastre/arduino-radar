@@ -19,11 +19,11 @@ Needed components:
     alt="Circuit Diagram"
     width="100%"
   />
-  <center style="font-size: 10px;">
+  <div align="center" style="font-size: 10px;">
     <i>
       Through <a href="https://www.tinkercad.com/dashboard">Tinkercad</a>
     </i>
-  </center>
+  </div>
 </div>
 
 ## Instructions
