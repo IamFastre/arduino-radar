@@ -13,17 +13,15 @@ Needed components:
 - Breadboard *(optional\*)*
 - Patience
 
-<div>
+<div align="center">
   <img
     src="./Media/Diagram.png"
     alt="Circuit Diagram"
     width="100%"
   />
-  <div align="center" style="font-size: 10px;">
-    <i>
-      Through <a href="https://www.tinkercad.com/dashboard">Tinkercad</a>
-    </i>
-  </div>
+  <i>
+    Through <a href="https://www.tinkercad.com/dashboard">Tinkercad</a>
+  </i>
 </div>
 
 ## Instructions
@@ -66,6 +64,16 @@ The files include:
 
 - `Assets/OCRAExtended-30.vlw`: Font file used by the **Processing** sketch.
 - `RadarGUI.pde`: Main **Processing** code for visualizing radar data.
+
+The GUI should be looking something *(more like 'exactly')* like this:
+
+<div align="center">
+  <img
+    src="./Media/ProcessingGUI.png"
+    alt="Circuit Diagram"
+    width="100%"
+  />
+</div>
 
 ---
 
