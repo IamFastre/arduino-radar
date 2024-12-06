@@ -16,7 +16,7 @@ final boolean SHOW_CREDITS = true;
 final boolean SHOW_ANGLES = true;
 final boolean SHOW_DISTANCES = true;
 
-final String[] CREDITS = { "IamFastre" }; // Don't tell your teacher I made it for you
+final String[] CREDITS = { "IamFastre" }; // Don't tell your teacher I made it for you, also remove this comment
 
 /* =============== You don't have to edit anything past this. =============== */
 
@@ -24,7 +24,7 @@ Serial myPort;
 PFont orcFont;
 
 int angle;
-int distance;
+int[] distances = { -1, -1 };
 float radarRadius;
 
 color primary   = #0c0c0c;
@@ -45,7 +45,7 @@ void settings() {
 void setup() {
   orcFont = loadFont("./Assets/OCRAExtended-30.vlw");
   myPort = new Serial(this, COM_PORT, BAUD_RATE); // Start the serial communication
-  myPort.bufferUntil('.'); // Reads the data up to the character '.' to be parsed, in the format of: `angle,distance`.
+  myPort.bufferUntil('.'); // Reads the data up to the character '.' to be parsed, in the format of: `angle,distance(,distance).`.
 
   // For the initial glow down effect
   noStroke();
@@ -66,20 +66,22 @@ void draw() {
   // Calling the draw functions
   drawRadar(); 
   drawRadarText(); 
-  drawRadarAnalog();
+  drawRadarAnalogs();
   drawInfoBox(); 
 }
 
 // Starts reading data from the Serial Port
 void serialEvent(Serial myPort) {
-  // Reads the data from the Serial Port up to the character '.' and puts it into the String variable `data`.
+  // Reads the data from the Serial Port up to the character '.'
+  // then splits it at ',' to separate values
   String data = myPort.readStringUntil('.');
-  data = data.substring(0, data.length() - 1);
+  String[] values = data.substring(0, data.length() - 1).split(",");
 
-  int i = data.indexOf(","); // Find the character ',' and puts it into the variable `i`
+  angle = int(values[0]); // First value is the angle
 
-  angle = int(data.substring(0, i));
-  distance = int(data.substring(i + 1, data.length()));
+  // The rest of the values are distances
+  for (int i = 1; i < values.length; ++i)
+    distances[i - 1] = int(values[i]);
 }
 
 void drawRadar() {
@@ -172,13 +174,14 @@ void drawRadarText() {
   popMatrix();
 }
 
-void drawRadarAnalog() {
+void radarAnalog(int θ, int d) {
   pushMatrix();
+
   translate(width / 1.4, height / 2);
-  rotate(-radians(angle)); // Rotates the analog according to the current angle
+  rotate(-radians(θ)); // Rotates the analog according to the given angle θ
 
   // To know how much green:red there will be
-  float percentage = (distance / 60.0);
+  float percentage = (constrain(d, 0, 60) / 60.0);
 
   // Red part
   // - is thinner to vanish under the green part
@@ -198,13 +201,18 @@ void drawRadarAnalog() {
   popMatrix();
 }
 
+void drawRadarAnalogs() {
+  radarAnalog(angle + 000, distances[0]);
+  radarAnalog(angle + 180, distances[1]);
+}
+
 void infoText(String key, String value, float index, float boxW, float margin) {
   // Key
   fill(secondary);
   text(key + ": ", boxW * 0.15 - margin, (height * 0.2) + (height * 0.075 * index));
   // Value
   fill(tertiary);
-  text(value, boxW * 0.5 - margin, (height * 0.2) + (height * 0.075 * index));
+  text(value, boxW * 0.55 - margin, (height * 0.2) + (height * 0.075 * index));
 }
 
 void drawInfoBox() {
@@ -234,9 +242,10 @@ void drawInfoBox() {
   // Properties
   textSize(36);
   textAlign(LEFT);
-  infoText("Object", distance > 60 ? "In Range" : "Out of Range", 0, boxW, margin);
+  infoText("Object", (distances[0] != -1 && distances[0] < 60) || (distances[1] != -1 && distances[1] < 60) ? "In Range" : "Out of Range", 0, boxW, margin);
   infoText("Angle", str(angle) + "°", 1, boxW, margin);
-  infoText("Distance", str(distance) + "cm", 2, boxW, margin);
+  infoText("Distance #1", distances[0] == -1 ? "Offline" : str(distances[0]) + "cm", 2, boxW, margin);
+  infoText("Distance #2", distances[1] == -1 ? "Offline" : str(distances[1]) + "cm", 3, boxW, margin);
 
   // Credits
   if (SHOW_CREDITS) {
