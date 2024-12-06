@@ -120,13 +120,13 @@ void drawRadar() {
   popMatrix();
 }
 
-void angleText(int theta) {
+void angleText(int θ) {
   // Rotates the matrix around the center of the radar
   translate(width / 1.4, height / 2);
-  rotate(-radians(theta));
+  rotate(-radians(θ));
 
   textAlign(RIGHT);
-  text(str(theta) + "°", radarRadius, 0);
+  text(str(θ) + "°", radarRadius, 0);
 
   resetMatrix();
 }
