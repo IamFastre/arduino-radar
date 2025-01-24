@@ -79,4 +79,4 @@ The GUI should be looking something *(more like 'exactly')* like this:
 
 ### Acknowledgments
 
-This project is based on a tutorial from [How To Mechatronics](https://howtomechatronics.com/projects/arduino-radar-project/) by [Dejan](https://howtomechatronics.com/author/howtom12_wp/).
+This project is _sort-of_ based on a tutorial from [How To Mechatronics](https://howtomechatronics.com/projects/arduino-radar-project/) by [Dejan](https://howtomechatronics.com/author/howtom12_wp/).
