@@ -82,7 +82,7 @@ float updateDistance(int trig, int echo) {
   unsigned long pulseDuration = pulseIn(echo, HIGH);
 
   // Measure the pulse width of the echo pin and calculate the distance value
-  return pulseDuration / 58.00; // Formula: (340m/s * 1μs) / 2
+  return pulseDuration * (0.034 / 2.0); // Formula: (340m/s * 1μs) / 2
 }
 
 /* ========================================================================== */
