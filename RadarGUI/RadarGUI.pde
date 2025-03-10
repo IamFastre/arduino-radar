@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent; // for reading the data from the serial port
 /*                                   CONFIGS                                  */
 /* ========================================================================== */
 
-final String COM_PORT = "COM1";
+final String COM_PORT = "COM2";
 final int BAUD_RATE = 9600;
 
 final boolean FULLSCREEN = true;
@@ -16,7 +16,8 @@ final boolean SHOW_CREDITS = true;
 final boolean SHOW_ANGLES = true;
 final boolean SHOW_DISTANCES = true;
 
-final String[] CREDITS = { "IamFastre" }; // Don't tell your teacher I made it for you, also remove this comment
+final String   INSPECTOR = "Your Mama";
+final String[] CREDITS   = { "IamFastre" }; // Don't tell your teacher I made it for you, also remove this comment
 
 /* =============== You don't have to edit anything past this. =============== */
 
@@ -50,7 +51,7 @@ void setup() {
   // For the initial glow down effect
   noStroke();
   fill(accent);
-  rect(0, 0, width, height); 
+  rect(0, 0, width, height);
 }
 
 void draw() {
@@ -61,13 +62,13 @@ void draw() {
   // Setting background color
   noStroke();
   fill(0, 10);
-  rect(0, 0, width, height); 
+  rect(0, 0, width, height);
 
   // Calling the draw functions
-  drawRadar(); 
-  drawRadarText(); 
+  drawRadar();
+  drawRadarText();
   drawRadarAnalogs();
-  drawInfoBox(); 
+  drawInfoBox();
 }
 
 // Starts reading data from the Serial Port
@@ -247,14 +248,30 @@ void drawInfoBox() {
   infoText("Distance #1", distances[0] == -1 ? "Offline" : str(distances[0]) + "cm", 2, boxW, margin);
   infoText("Distance #2", distances[1] == -1 ? "Offline" : str(distances[1]) + "cm", 3, boxW, margin);
 
+  // Height step factor on the bottom text
+  float factor = height * 0.02 + 10;
+  int len = CREDITS.length + 1;
+
   // Credits
   if (SHOW_CREDITS) {
     textSize(14);
     textAlign(LEFT);
-    fill(accent);
+
+    // If an inspector name is provided print their name along with the title
+    if (INSPECTOR != "") {
+      // Place the 'Inspector:' on the top
+      fill(accent);
+      text("Inspector:", margin * 2, height - factor * (3.5 + 0.5 * len));
+
+      fill(tertiary);
+      textSize(20);
+      text(INSPECTOR, margin * 5.75, height - factor * (3.5 + 0.5 * len));
+    }
 
     // Place the 'By:' on the same height as the first credited
-    text("By:", margin * 2, height - margin * (2.5 + 0.5 * CREDITS.length));
+    textSize(14);
+    fill(accent);
+    text("By:", margin * 2, height - factor * (2.5 + 0.5 * len));
 
     fill(tertiary);
     for (int i = 0; i < CREDITS.length; i++) {
@@ -262,7 +279,7 @@ void drawInfoBox() {
       // Determine the height at which the name lies according to index and array length
       text(
         s + (i == CREDITS.length - 1 ? "." : ","),
-        margin * 3.5, height - margin * (2.5 + 0.5 * CREDITS.length - i)
+        margin * 3.5, height - factor * (2.5 + 0.5 * len - i)
       );
     }
   }
