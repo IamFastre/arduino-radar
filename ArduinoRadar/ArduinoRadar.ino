@@ -52,7 +52,7 @@ struct sen {
       debug(VERBOSE, "Pulse duration from echo:", String(echo), " took ", String(pulseDuration), "ms");
 
       // Measure the pulse width of the echo pin and calculate the distance value
-      distance = pulseDuration * (0.034 / 2.0); // Formula: (340m/s * 1μs) / 2
+      distance = pulseDuration * (0.0347 / 2.0); // Formula: (343m/s * 1μs) / 2
     }
   }
 };
