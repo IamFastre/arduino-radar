@@ -78,7 +78,7 @@ sen sensor1 = {
 
 // Defines Trig and Echo pins of the ultrasonic sensor 2
 sen sensor2 = {
-  .enabled = false,
+  .enabled = true,
   .trig = 5,
   .echo = 6,
 };
